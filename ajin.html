@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajin | Manga Reader</title>
+  <style>
+    :root {
+      --bg-color: #0e0e0e;
+      --text-color: #f1f1f1;
+      --nav-bg: #1e1e1e;
+      --accent-color: #00b4d8;
+      --primary-color: #e63946;
+      --volume-bg: #222;
+      --footer-bg: #1a1a1a;
+      --box-shadow-color: #00b4d8aa;
+    }
+
+    body.light {
+      --bg-color: #fefefe;
+      --text-color: #111;
+      --nav-bg: #ddd;
+      --accent-color: #0077b6;
+      --primary-color: #d62828;
+      --volume-bg: #eee;
+      --footer-bg: #ccc;
+      --box-shadow-color: #0077b6aa;
+    }
+
+    body {
+      background: url('https://i.pinimg.com/736x/3e/bc/f2/3ebcf2e7ea60738d41399fe9b7a5210e.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    body.light {
+      background: url('https://i.pinimg.com/originals/a0/15/49/a0154996af53f939cc63bc9327f81c9d.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    header {
+      background: transparent;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--text-color);
+      transition: color 0.4s;
+      text-shadow: 0 0 8px rgba(0,0,0,0.9);
+    }
+    header h1 {
+      font-size: 64px;
+      background: rgba(0,0,0,0.5);
+      padding: 20px 40px;
+      border-radius: 10px;
+      transition: background 0.4s;
+    }
+    body.light header h1 {
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--text-color);
+      text-shadow: none;
+    }
+    nav {
+      background-color: var(--nav-bg);
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      transition: background-color 0.4s;
+    }
+    nav a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.4s;
+    }
+    nav button {
+      background: var(--accent-color);
+      border: none;
+      color: var(--text-color);
+      font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    nav button:hover {
+      background: var(--primary-color);
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      background: rgba(0,0,0,0.6);
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      transition: background 0.4s, color 0.4s;
+    }
+    body.light section {
+      background: rgba(255,255,255,0.85);
+      color: var(--text-color);
+      box-shadow: 0 0 25px rgba(0,0,0,0.15);
+    }
+    h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      transition: color 0.4s;
+    }
+    .volume-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 25px;
+    }
+    .volume-card {
+      background: var(--volume-bg);
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 0 10px var(--box-shadow-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s;
+    }
+    .volume-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--box-shadow-color);
+    }
+    .volume-card img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
+      user-select: none;
+      pointer-events: none;
+    }
+    .volume-card a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      transition: color 0.4s;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px var(--box-shadow-color);
+      transition: box-shadow 0.4s;
+      background: white;
+    }
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 36px;
+        padding: 10px;
+      }
+      nav a {
+        margin: 0 8px;
+        font-size: 14px;
+      }
+      .volume-list {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+      }
+      iframe {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ajin: Demi-Human</h1>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#volumes">Volumes</a>
+    <a href="#reader">Reader</a>
+    <button id="theme-toggle">Switch to Light Mode</button>
+  </nav>
+
+  <section id="about">
+    <h2>About the Manga</h2>
+    <p><strong>Ajin: Demi-Human</strong> is a Japanese manga series written and illustrated by Gamon Sakurai. It follows Kei Nagai, a student who discovers he is an immortal "Ajin" after surviving a fatal accident. Hunted by the government, he must survive in a world that fears and exploits his kind.</p>
+  </section>
+
+  <section id="volumes">
+    <h2>Available Volumes (PDF)</h2>
+    <div class="volume-list">
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/736x/98/5b/9e/985b9eb60ffdcec056ca8d04708058d7.jpg" alt="Ajin Volume 05" />
+        <a href="chapters/Ajin_05.pdf" target="_blank">Ajin - Volume 05</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/1200x/b4/07/39/b40739945dafabd7e4a5b7d2981d7310.jpg" alt="Ajin Volume 06" />
+        <a href="chapters/Ajin_06.pdf" target="_blank">Ajin - Volume 06</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/1200x/c8/08/97/c8089740d85457402e4690ac4403b4f8.jpg" alt="Ajin Volume 07" />
+        <a href="chapters/Ajin_07.pdf" target="_blank">Ajin - Volume 07</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://m.media-amazon.com/images/I/71WhfGK1AqL.jpg" alt="Ajin Volume 08" />
+        <a href="chapters/Ajin_08.pdf" target="_blank">Ajin - Volume 08</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/736x/97/1f/1c/971f1c672818b9ed09a03a47d0ef630d.jpg" alt="Ajin Volume 09" />
+        <a href="chapters/Ajin_09.pdf" target="_blank">Ajin - Volume 09</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/736x/1a/55/4e/1a554e0134aa13c2dd6fb1e84e5f1ed7.jpg" alt="Ajin Volume 10" />
+        <a href="chapters/Ajin_10.pdf" target="_blank">Ajin - Volume 10</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/736x/a9/06/67/a9066704b05301a249fd82ab1710e22e.jpg" alt="Ajin Volume 11" />
+        <a href="chapters/Ajin_11.pdf" target="_blank">Ajin - Volume 11</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/1200x/6c/e5/c9/6ce5c942df135678f582f2d4d49f7ecb.jpg" alt="Ajin Volume 12" />
+        <a href="chapters/Ajin_12.pdf" target="_blank">Ajin - Volume 12</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/736x/84/b7/41/84b74145fd6c2f57e916278753ec01c6.jpg" alt="Ajin Volume 13" />
+        <a href="chapters/Ajin_13.pdf" target="_blank">Ajin - Volume 13</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/1200x/35/ac/f3/35acf3b0a08fef6b35f644270917bdbe.jpg" alt="Ajin Volume 14" />
+        <a href="chapters/Ajin_14.pdf" target="_blank">Ajin - Volume 14</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/736x/a7/84/7c/a7847c992a06a35de1972f32c996999a.jpg" alt="Ajin Volume 15" />
+        <a href="chapters/Ajin_15.pdf" target="_blank">Ajin - Volume 15</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://m.media-amazon.com/images/I/91NS3vodx3L._SL1500_.jpg" alt="Ajin Volume 16" />
+        <a href="chapters/Ajin_16.pdf" target="_blank">Ajin - Volume 16</a>
+      </div>
+      <div class="volume-card">
+        <img src="https://i.pinimg.com/1200x/36/24/6a/36246af0281c603e931cf3a3ed4da5fa.jpg" alt="Ajin Volume 17" />
+        <a href="chapters/Ajin_17.pdf" target="_blank">Ajin - Volume 17</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="reader">
+    <h2>Sample Embedded Reader (Volume 5)</h2>
+    <iframe src="chapters/Ajin_05.pdf"></iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Ajin Manga Reader | Designed by takezoGr</p>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('light');
+      if(body.classList.contains('light')) {
+        toggleBtn.textContent = 'Switch to Dark Mode';
+      } else {
+        toggleBtn.textContent = 'Switch to Light Mode';
+      }
+    });
+    
+  </script>
+</body>
+</html>
+<meta charset="utf-8">
+    <meta name="description" content="Author: A.N. Author, Illustrator: P. Picture, Category: Books, Price:  £9.24, Length: 784 pages">
+    <meta name="google-site-verification" content="+nxGUDJ4QpAZ5l9Bsjdi102tLVC21AIh5d1Nl23908vVuFHs34=">
+    <title>Example Books - high-quality used books for children</title>
+    <meta name="robots" content="noindex,nofollow">
+    
